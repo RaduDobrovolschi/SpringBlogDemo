@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <changeSet id="220427-1" author="Esempla">
+        <!--    user    -->
+        <createTable tableName="user">
+            <column autoIncrement="true" name="id" type="bigserial">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="username" type="VARCHAR(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+                <column name="status" type="VARCHAR(32)">
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="status"
+                                 baseTableName="user"
+                                 constraintName="fk_user__status"
+                                 referencedColumnNames="status"
+                                 referencedTableName="user_status"/>
+    </changeSet>
+
+    <changeSet id="220427-2" author="Esempla" context="faker">
+        <loadData
+                file="fake-data/user.csv"
+                separator=";"
+                tableName="user">
+            <column name="id" type="numeric"/>
+            <column name="username" type="string"/>
+            <column name="password" type="string"/>
+            <column name="last_name" type="string"/>
+            <column name="first_name" type="string"/>
+            <column name="email" type="string"/>
+            <column name="status" type="string"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

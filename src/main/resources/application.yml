@@ -1,0 +1,34 @@
+logging:
+  level:
+    ROOT: DEBUG
+  file:
+    path: ${user.home}                            #D:/home
+    name: ${user.home}/logFile.log                #D:/home/logFile.log
+
+spring:
+  jpa:
+    properties:
+      hibernate.format_sql: true
+    show-sql: true
+  liquibase:
+    change-log: classpath:db/changelog/master.xml
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    #url: jdbc:postgresql://localhost:5432/blog1
+    jdbcurl: jdbc:postgresql://localhost:5432/blog1
+    username: postgres
+    password: postgres
+
+
+connection:
+  ServerIp: http://172.28.4.245:8080
+  username: admin
+  password: admin
+
+minio:
+  url: http://localhost:9000      #https://play.min.io
+  bucket:
+    name: 26052022                #minio-example-demo
+  access:
+    key: developer                #minioadmin
+    secret: 123qweASD             #minioadmin

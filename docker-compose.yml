@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  db:
+    image: 'postgres:13-alpine'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123qweASD
+      - POSTGRES_DB=blog1
+    ports:
+      - "5430:5432"
+  app:
+    image: 'registry.hub.docker.com/radudob/blog.demo'   #v3
+    environment:
+      - SPRING_DATASOURCE_JDBCURL=jdbc:postgresql://db:5432/blog1
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=123qweASD
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db

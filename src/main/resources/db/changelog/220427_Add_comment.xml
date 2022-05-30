@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--    comment     -->
+    <changeSet  id="220427-1" author="Esempla">
+        <createTable tableName="comment">
+            <column autoIncrement="true" name="id" type="bigserial">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="content" type="VARCHAR(256)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_time" type="date"/>
+
+            <column name="user_id" type="bigint">
+                <constraints foreignKeyName="id" uniqueConstraintName="fk_comment__post_id"/>
+            </column>
+            <column name="post_id" type="bigint">
+                <constraints foreignKeyName="id" uniqueConstraintName="fk_comment__user_id"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="post_id"
+                                 baseTableName="comment"
+                                 constraintName="fk_comment__post_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="post"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="comment"
+                                 constraintName="fk_comment__user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user"/>
+    </changeSet>
+
+    <changeSet id="220427-2" author="Esempla" context="faker">
+        <loadData
+                file="fake-data/comment.csv"
+                separator=";"
+                tableName="comment">
+            <column name="id" type="numeric"/>
+            <column name="content" type="string"/>
+            <column name="create_time" type="date"/>
+            <column name="user_id" type="numeric"/>
+            <column name="post_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

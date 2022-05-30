@@ -1,0 +1,3 @@
+id;username;password;last_name;first_name;email;status
+1;admin;$2a$10$cQ49th6zybi0CHd16RGz6Og5aD7aIymIASztyWGbe6HtfJqjf9Ody;admin;admin;admin@gmail.com;Active
+2;user;$2a$10$MPtGLK02QGZIifB3mph3vOSfMQLgbQegBmp8myq7PGFJdl84PgW0a;user;user;user@gmail.com;Active

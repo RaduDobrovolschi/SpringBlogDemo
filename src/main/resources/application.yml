@@ -5,6 +5,18 @@ logging:
     path: ${user.home}                            #D:/home
     name: ${user.home}/logFile.log                #D:/home/logFile.log
 
+blog:
+  connection:
+    serverIp: http://172.28.4.245:8080
+    username: admin
+    password: admin
+  minio:
+    url: http://localhost:9000    #http://0.0.0.0:9000 #https://play.min.io
+    name: 26052022                #minio-example-demo
+    key: developer                #minioadmin
+    secret: 123qweASD             #minioadmin
+    bucketName: 26052022
+
 spring:
   jpa:
     properties:
@@ -18,17 +30,3 @@ spring:
     jdbcurl: jdbc:postgresql://localhost:5432/blog1
     username: postgres
     password: postgres
-
-
-connection:
-  ServerIp: http://172.28.4.245:8080
-  username: admin
-  password: admin
-
-minio:
-  url: http://localhost:9000      #https://play.min.io
-  bucket:
-    name: 26052022                #minio-example-demo
-  access:
-    key: developer                #minioadmin
-    secret: 123qweASD             #minioadmin

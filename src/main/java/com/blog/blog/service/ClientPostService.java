@@ -1,7 +1,7 @@
 package com.blog.blog.service;
 
 import com.blog.blog.BlogApplication;
-import com.blog.blog.config.ConnectionConfig;
+import com.blog.blog.config.AppConfiguration;
 import com.blog.blog.domain.Post;
 import com.blog.blog.service.dto.PostDto;
 import org.apache.logging.log4j.LogManager;
@@ -21,16 +21,16 @@ import java.util.List;
 public class ClientPostService {
     private static final Logger logger = LogManager.getLogger(BlogApplication.class);
     private final RestTemplate restTemplate;
-    private ConnectionConfig connectionConfig;
+    private AppConfiguration.Connection connection;
     private final HttpHeaders httpHeaders;
     private final String connectionUrl;
 
-    public ClientPostService(RestTemplate restTemplate, ConnectionConfig connectionConfig, HttpHeaders httpHeaders) {
+    public ClientPostService(RestTemplate restTemplate, AppConfiguration configuration, HttpHeaders httpHeaders) {
         this.restTemplate = restTemplate;
-        this.connectionConfig = connectionConfig;
+        this.connection = configuration.getConnection();
         this.httpHeaders = httpHeaders;
-        connectionUrl = connectionConfig.getServerIp() + "/api/posts";
-        httpHeaders.add("Authorization", "Basic " + Base64.getEncoder().encodeToString((connectionConfig.getUsername() + ':' + connectionConfig.getPassword()).getBytes()));
+        connectionUrl = connection.getServerIp() + "/api/posts";
+        httpHeaders.add("Authorization", "Basic " + Base64.getEncoder().encodeToString((connection.getUsername() + ':' + connection.getPassword()).getBytes()));
     }
 
     public List<Post> getAllPosts(){

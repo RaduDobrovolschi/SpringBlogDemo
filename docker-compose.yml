@@ -9,13 +9,30 @@ services:
       - POSTGRES_DB=blog1
     ports:
       - "5430:5432"
+  minio:
+    image: 'minio/minio:latest'
+    ports:
+      - "9000:9000"
+      - "9099:9099"
+    environment:
+      - MINIO_ACCESS_KEY=developer
+      - MINIO_SECRET_KEY=123qweASD
+    volumes:
+      - ./storage/minio:/data
+    command: server --address ":9099" --console-address ":9000" /data
+    restart: always
   app:
     image: 'registry.hub.docker.com/radudob/blog.demo'   #v3
     environment:
       - SPRING_DATASOURCE_JDBCURL=jdbc:postgresql://db:5432/blog1
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=123qweASD
+      - BLOG_MINIO_URL=http://minio:9099/
+      - BLOG_MINIO_KEY=developer
+      - BLOG_MINIO_SECRET=123qweASD
+      - BLOG_MINIO_BUCKETNAME=26052022
     ports:
       - "8080:8080"
     depends_on:
       - db
+      - minio

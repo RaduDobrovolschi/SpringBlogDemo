@@ -1,5 +1,6 @@
 package com.blog.blog.service;
 
+import com.blog.blog.config.AppConfiguration;
 import com.blog.blog.service.dto.FileDto;
 import io.minio.GetObjectArgs;
 import io.minio.ListObjectsArgs;
@@ -7,8 +8,6 @@ import io.minio.MinioClient;
 import io.minio.Result;
 import io.minio.messages.Item;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.InputStream;
@@ -19,11 +18,13 @@ import java.util.List;
 @Service
 public class MinioService {
 
-    @Autowired
     private MinioClient minioClient;
-
-    @Value("${minio.bucket.name}")
     private String bucketName;
+
+    public MinioService(MinioClient minioClient, AppConfiguration configuration) {
+        this.minioClient = minioClient;
+        bucketName = configuration.getMinio().getBucketName();
+    }
 
     public InputStream getObject(String filename) {
         InputStream stream;

@@ -1,11 +1,6 @@
 package com.blog.blog.config;
 
-import com.blog.blog.BlogApplication;
-import com.blog.blog.repository.UserRepository;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,16 +13,10 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
-
-    private UserRepository userRepository;
-    private static final Logger logger = LogManager.getLogger(BlogApplication.class);
-
-    @Autowired
-    @Qualifier("datasource")
     private DataSource dataSource;
 
-    public SpringSecurityConfig(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public SpringSecurityConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 
     @Override
@@ -41,8 +30,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-            .jdbcAuthentication()
+        auth.jdbcAuthentication()
             .dataSource(dataSource)
             .authoritiesByUsernameQuery("select username, role.role_name FROM \"user\" inner join user_role role on \"user\".id = role.user_id where username = ?")
             .usersByUsernameQuery("select username, password, true FROM \"user\" where username = ?")

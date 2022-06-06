@@ -62,7 +62,7 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public ResponseEntity<User> getUser(@PathVariable Long id){
-        logger.debug("getting post no " + id);
+        logger.debug("getting user no " + id);
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()){
             logger.debug("returning user " + user.get().toString());

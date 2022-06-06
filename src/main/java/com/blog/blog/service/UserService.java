@@ -24,7 +24,7 @@ public class UserService {
     private final PostRepository postRepository;
     private final CommentRepository commentRepository;
     private static final Logger logger = LogManager.getLogger(BlogApplication.class);
-    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public UserService(UserRepository userRepository, UserStatusRepository userStatusRepository, UserRoleRepository userRoleRepository, PostRepository postRepository, CommentRepository commentRepository) {
         this.userRepository = userRepository;
@@ -90,7 +90,7 @@ public class UserService {
         }
 
     public void delete(Long id){
-        logger.debug("deteing post id: " + id);
+        logger.debug("deleting user id: " + id);
         User user = userRepository.findById(id).get();
         postRepository.deleteAllByUser(user);
         commentRepository.deleteAllByUser(user);

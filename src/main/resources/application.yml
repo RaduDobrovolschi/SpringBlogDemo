@@ -12,7 +12,6 @@ blog:
     password: admin
   minio:
     url: http://localhost:9000    #http://0.0.0.0:9000 #https://play.min.io
-    name: 26052022                #minio-example-demo
     key: developer                #minioadmin
     secret: 123qweASD             #minioadmin
     bucketName: 26052022
@@ -26,7 +25,7 @@ spring:
     change-log: classpath:db/changelog/master.xml
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    #url: jdbc:postgresql://localhost:5432/blog1
-    jdbcurl: jdbc:postgresql://localhost:5432/blog1
+    url: jdbc:postgresql://localhost:5432/fileManager #jdbcurl
     username: postgres
     password: postgres
+    driver-class-name: org.postgresql.Driver

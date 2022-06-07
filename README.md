@@ -26,5 +26,5 @@ docker-compose up -p
 
 ### Run using maven
 ```
-mvn spring-boot:run -d
+mvn spring-boot:run
 ```

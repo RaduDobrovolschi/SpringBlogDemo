@@ -19,12 +19,12 @@ Full funtcional can be viewed on http://localhost:8080/swagger-ui/index.html# us
 
 ## How to run
 
-###Run using docker
+### Run using docker
 ```
 docker-compose up -p
 ```
 
-###Run using maven
+### Run using maven
 ```
 mvn spring-boot:run -d
 ```

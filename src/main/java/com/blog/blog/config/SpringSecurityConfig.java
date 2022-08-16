@@ -12,7 +12,8 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
-public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+public class SpringSecurityConfig extends WebSecurityConfigurerAdapter  {
+
     private DataSource dataSource;
 
     public SpringSecurityConfig(DataSource dataSource) {

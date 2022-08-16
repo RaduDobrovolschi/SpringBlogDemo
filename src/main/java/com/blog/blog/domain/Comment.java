@@ -50,6 +50,15 @@ public class Comment implements Serializable {
         this.post = post;
     }
 
+    public Comment content(String content){
+        this.content = content;
+        return this;
+    }
+
+    public Comment createTime(Instant createTime){
+        this.createTime = createTime;
+        return this;
+    }
     public Post getPost(){return post;}
 
     public void setPost(Post post){this.post = post;}

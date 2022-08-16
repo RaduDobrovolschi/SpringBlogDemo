@@ -71,6 +71,9 @@ public class CommentController {
             logger.error("Error: not foud");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        if (dto.getContent() == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(commentService.postComment(dto), HttpStatus.CREATED);
     }
 

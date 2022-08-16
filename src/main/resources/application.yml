@@ -29,3 +29,10 @@ spring:
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+      indent-output: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher

@@ -15,7 +15,7 @@
             <column name="content" type="VARCHAR(256)">
                 <constraints nullable="false"/>
             </column>
-            <column name="create_time" type="date"/>
+            <column name="create_time" type="${datetimeType}"/>
 
             <column name="user_id" type="bigint">
                 <constraints foreignKeyName="id" uniqueConstraintName="fk_comment__post_id"/>

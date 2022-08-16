@@ -33,7 +33,8 @@ public class ClientCommentController {
 
     @GetMapping("/comments/{id}")
     public ResponseEntity<Comment> getComment(@PathVariable Long id){
-        return new ResponseEntity<>(clientCommentService.getComment(id), HttpStatus.OK);
+        return ResponseEntity.ok().headers(new HttpHeaders()).body(clientCommentService.getComment(id));
+        //new ResponseEntity<>(clientCommentService.getComment(id), HttpStatus.OK);
     }
 
     @PostMapping("/comments")

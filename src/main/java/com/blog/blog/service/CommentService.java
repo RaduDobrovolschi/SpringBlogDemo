@@ -129,7 +129,7 @@ public class CommentService {
 
         String[] comment;
         while ((comment = csvReader.readNext()) != null){
-            logger.error("post id: " + comment[4]);
+            //logger.error("post id: " + comment[4]);
             if (commentRepository.existsById(Long.parseLong(comment[0]))){
                 logger.debug("addig comment " + comment.toString() + " from csv");
                 commentRepository.save(new Comment(

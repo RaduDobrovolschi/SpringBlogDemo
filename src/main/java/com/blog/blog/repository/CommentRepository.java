@@ -3,6 +3,7 @@ package com.blog.blog.repository;
 import com.blog.blog.domain.Comment;
 import com.blog.blog.domain.Post;
 import com.blog.blog.domain.User;
+import liquibase.pro.packaged.C;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -23,4 +24,5 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     public List<Comment> findAllByPost(Post post);
     public Long countByPost(Post post);
     public boolean existsByPost(Post post);
+
 }

@@ -1,9 +1,9 @@
 # SpringBlogDemo
 
-A simple simple Spring Boot app that I created for parcticing purposes. 
-The app represents a simple blog wich realizes CRUD functionalities for Comments, Posts and Users.
-Also suports CSV and XML export/import adn implements basic authentication.
-Full funtcional can be viewed on http://localhost:8080/swagger-ui/index.html# using swagger-ui.
+A simple Spring Boot app that I created for practicing purposes. 
+The app represents a simple blog that realizes CRUD functionalities for Comments, Posts and Users.
+Also supports CSV and XML export/import and implements basic authentication.
+Full functional can be viewed on http://localhost:8080/swagger-ui/index.html# using swagger-ui.
 
 ## Technologies:
 - Java
